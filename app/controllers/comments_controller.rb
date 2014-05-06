@@ -15,10 +15,12 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+		@posts = Post.all
   end
 
   # GET /comments/1/edit
   def edit
+		@posts = Post.all
   end
 
   # POST /comments
@@ -31,6 +33,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
+				@posts = Post.all
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end

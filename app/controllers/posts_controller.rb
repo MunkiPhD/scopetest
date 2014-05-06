@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+		@trouble_posts = Post.joins(:comments).created_before(Date.today)
   end
 
   # GET /posts/1
